@@ -16,6 +16,7 @@ template <typename T>
 Node<T>::Node(){
 	//cout<<"creating node"<<endl;
 	data = NULL;
+	next = NULL;
 }
 
 template <typename T>
@@ -29,7 +30,7 @@ class List{
 		Node<T> *head;
 		List();
 		bool isEmpty(){
-			if(head->data == NULL) return 1;
+			if(head->next == NULL) return 1;
 			else return 0;
 		};
 		void insertHead(T data);
@@ -45,6 +46,7 @@ List<T>::List(){
 template <typename T>
 void List<T>::insertHead(T data){
 	Node<T> *p = new Node<T>(data);
+	p->next = head->next;
 	head->next = p;
 }
 
@@ -78,6 +80,15 @@ int main() {
 	l->insertHead(4);
 	l->insertHead(5);
 	l->insertHead(6);
+	cout << l->removeHead()<<endl;
+	cout << l->removeHead()<<endl;
+	cout << l->removeHead()<<endl;
+	cout << l->removeHead()<<endl;
+	cout<<"-------"<<endl;
+	l->insertTail(7);
+	l->insertTail(8);
+	l->insertTail(9);
+	l->insertTail(10);
 	cout << l->removeHead()<<endl;
 	cout << l->removeHead()<<endl;
 	cout << l->removeHead()<<endl;
