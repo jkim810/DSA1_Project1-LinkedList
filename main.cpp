@@ -36,6 +36,9 @@ class List{
 		void insertHead(T data);
 		void insertTail(T data);
 		T removeHead();
+		
+		virtual void push(T data);
+		virtual T pop();
 };
 
 template <typename T>
@@ -57,7 +60,7 @@ void List<T>::insertTail(T data){
 		head->next = p;
 	}else{
 		Node<T> *cur = head;
-		while(isEmpty()) cur = cur->next;
+		while(cur->next!=NULL) cur = cur->next;
 		cur->next = p;
 	}
 	
@@ -73,26 +76,58 @@ T List<T>::removeHead(){
 	}
 }
 
+
+template <typename T>
+void List<T>::push(T data){
+	//stack
+	insertHead(data);
+	//queue
+	insertTail(data);
+}
+
+template <typename T>
+T List<T>::pop(){
+	return removeHead();
+}
+
+template <typename T>
+class Stack : public List<T>{
+	public:
+		void push(T data){
+			List<T>::insertHead(data);
+		}
+		T pop(){
+			return List<T>::removeHead();
+		}
+};
+
+template <typename T>
+class Queue : public List<T>{
+	public:
+		void push(T data){
+			List<T>::insertTail(data);
+		}
+		T pop(){
+			return List<T>::removeHead();
+		}
+};
+
 int main() {
 	// your code goes here
-	List<int> *l = new List<int>();
-	l->insertHead(3);
-	l->insertHead(4);
-	l->insertHead(5);
-	l->insertHead(6);
-	cout << l->removeHead()<<endl;
-	cout << l->removeHead()<<endl;
-	cout << l->removeHead()<<endl;
-	cout << l->removeHead()<<endl;
-	cout<<"-------"<<endl;
-	l->insertTail(7);
-	l->insertTail(8);
-	l->insertTail(9);
-	l->insertTail(10);
-	cout << l->removeHead()<<endl;
-	cout << l->removeHead()<<endl;
-	cout << l->removeHead()<<endl;
-	cout << l->removeHead()<<endl;
+	Stack<int> *s = new Stack<int>();
+	Queue<int> *q = new Queue<int>();
+	
+	for(int i = 0; i < 5; i++){
+		s->push(i);
+		q->push(i);
+	}
+	
+	for(int i = 0; i < 5; i++) cout << s->pop() << endl;
+	
+	cout << "------" << endl;
+
+	for(int i = 0; i < 5; i++) cout << q->pop() << endl;
+
 	return 0;
 }
 
