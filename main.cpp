@@ -13,11 +13,7 @@ class Node{
 
 
 template <typename T>
-Node<T>::Node(){
-	//cout<<"creating node"<<endl;
-	data = NULL;
-	next = NULL;
-}
+Node<T>::Node(){}
 
 template <typename T>
 Node<T>::Node(T data){
@@ -26,13 +22,15 @@ Node<T>::Node(T data){
 
 template <typename T>
 class List{
-	public:
+	private:
 		Node<T> *head;
-		List();
 		bool isEmpty(){
 			if(head->next == NULL) return 1;
 			else return 0;
 		};
+	
+	public:
+		List();
 		void insertHead(T data);
 		void insertTail(T data);
 		T removeHead();
@@ -75,7 +73,6 @@ T List<T>::removeHead(){
 		return tmp->data;
 	}
 }
-
 
 template <typename T>
 void List<T>::push(T data){
@@ -123,9 +120,7 @@ int main() {
 	}
 	
 	for(int i = 0; i < 5; i++) cout << s->pop() << endl;
-	
 	cout << "------" << endl;
-
 	for(int i = 0; i < 5; i++) cout << q->pop() << endl;
 
 	return 0;
