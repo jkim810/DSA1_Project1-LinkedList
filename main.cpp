@@ -1,7 +1,3 @@
-//AUTHOR: Junbum Kim
-//ECE 164 Data structures and algorithms 1
-//PROFESSOR: Carl Sable
-
 #include <iostream>
 #include <fstream>
 #include <list>
@@ -269,14 +265,14 @@ int main(){
 	
 	//Read in command line by line until the end of read file
 	while (!inFile.eof()){
-		
 		//Read line
 		getline(inFile, inLine);
-
-		//Make sure the last read in line is not registered.
-		if(inLine==""){
+		
+		if(inLine = ""){
+			outFile << endl;
 			break;
 		}
+		
 		//log processing command
 		outFile<< processing << inLine << endl;
 
